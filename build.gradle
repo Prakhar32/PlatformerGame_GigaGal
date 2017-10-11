@@ -104,7 +104,12 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+
+        compile('com.googlecode.json-simple:json-simple:1.1.1') {
+            exclude module: 'junit'
+        }
     }
+
         task packTextures {
             def inputDir = "$rootDir/core/rawAssets/sprites"
             def outputDir = "$rootDir/android/assets/images"
@@ -116,8 +121,15 @@ project(":core") {
             }
         }
 
+    task copyLevels(type: Copy){
+        from "../GigaGalLevels/scenes"
+        into "../android/assets/levels"
+        exclude "MainScene.dt"
+    }
+
         // TODO: Uncomment the following line declaring a dependency between compileJava and packTextures
         project.tasks.compileJava.dependsOn packTextures
+    project.tasks.compileJava.dependsOn copyLevels
     }
 
     tasks.eclipse.doLast {

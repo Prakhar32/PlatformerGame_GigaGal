@@ -18,7 +18,7 @@ public class Platform implements Comparable<Platform>{
     public float bottom;
     public float left;
     NinePatch platform;
-    boolean hasLandedOnPlatform;
+    public boolean hasLandedOnPlatform;
 
     public Platform() {
         width = MathUtils.random(Constants.PLATFORM_MINIMUM_WIDTH, Constants.PLATFORM_MAXIMUM_WIDTH);
@@ -27,6 +27,12 @@ public class Platform implements Comparable<Platform>{
         left = MathUtils.random(Constants.MINIMUM_PLATFORM_LEFT, Constants.MAXIMUM_PLATFORM_LEFT);
         hasLandedOnPlatform = false;
         //width = 30;length = 30;bottom = 10;left = 10;
+    }
+
+    public Platform(float left, float bottom, float width, float height){
+        this.left = left;this.bottom = bottom;
+        this.length = height;
+        this.width = width;
     }
 
     public void render(SpriteBatch batch){

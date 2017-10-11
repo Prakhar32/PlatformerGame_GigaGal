@@ -13,24 +13,28 @@ import com.udacity.gamedev.gigagal.util.Constants;
  */
 
 public class Enemy {
+    public String TAG = Enemy.class.getName();
+
     TextureRegion enemysprite;
-    Vector2 enemy_pos;
+    public Vector2 enemy_pos;
     Platform platform;
     Vector2 enemy_velocity;
     HorizontalMoveState horizontalmovestate;
     VerticalMoveState verticalMoveState;
     float starttimer;
+    float enemyHealth;
 
-    public Enemy(float height, float left, Platform platform){
+    public Enemy(Platform platform){
         enemy_pos = new Vector2();
         enemy_velocity = new Vector2();
-        enemy_pos.x = left;
-        enemy_pos.y = height;
+        enemy_pos.x = platform.left + platform.width;
+        enemy_pos.y = platform.bottom + platform.length;
         this.platform = platform;
         enemysprite = Assets.instance.enemyAssets.emeny_sprite;
         horizontalmovestate = HorizontalMoveState.MOVING_RIGHT;
         verticalMoveState = VerticalMoveState.MOVING_UP;
         starttimer = TimeUtils.nanoTime() / (float)1e+9;
+        enemyHealth = 4;
     }
 
     public void render(SpriteBatch batch){
@@ -101,7 +105,6 @@ public class Enemy {
             verticalMoveState = VerticalMoveState.MOVING_UP;
             starttimer = currentTime;
         }
-
     }
 }
 
