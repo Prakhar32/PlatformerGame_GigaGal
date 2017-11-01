@@ -68,7 +68,7 @@ public class Constants {
     public static final int BULLET_PER_POWERUP = 10;
 
     public static final String BULLET = "bullet";
-    public static final float BULLET_VELOCITY = 120f;
+    public static final float BULLET_VELOCITY = 180f;
     public static final float EXPLOSION_TIME_DURATION = 0.5f;
 
     public static final String LEVEL_DIR = "levels";
@@ -101,5 +101,15 @@ public class Constants {
     public static final float POWERUP_BONUS = 50;
 
     public static final float SPACING_BETWEEN_LIVES = 35;
+    public static final float OVERLAY_TIMER = 5;
 
+    public static final String JUMP_BUTTON = "button-jump";
+    public static final String MOVE_LEFT_BUTTON = "button-move-left";
+    public static final String MOVE_RIGHT_BUTTON = "button-move-right";
+    public static final String SHOOT_BUTTON = "button-shoot";
+
+    public static final float BUTTON_POSITION1_X = 70;
+    public static final float BUTTON_POSITION1_Y = 40;
+    public static final float BUTTON_POSITION2_X = 55f;
+    public static final float BUTTON_POSITION2_Y = 50f;
 }

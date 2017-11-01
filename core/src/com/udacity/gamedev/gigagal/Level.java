@@ -68,8 +68,7 @@ public class Level {
             powerUp.render(batch);
         }
 
-            exitPortal.render(batch);
-
+        exitPortal.render(batch);
         gigaGal.render(batch);
     }
 
@@ -117,7 +116,8 @@ public class Level {
         gigaGal.PowerUpsInitializer(powerUpes);
     }
 
-    public void update(float delta){
+    public void update(float delta, SpriteBatch batch){
+        gigaGal.update(delta, batch);
     }
 
    /* public Vector2 platformToVector2(Platform platform){

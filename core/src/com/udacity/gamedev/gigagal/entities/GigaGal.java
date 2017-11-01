@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.Level;
 import com.udacity.gamedev.gigagal.Overlays.GigaGalHud;
+import com.udacity.gamedev.gigagal.Overlays.OnScreenControls;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
 
@@ -77,6 +78,7 @@ public class GigaGal extends InputAdapter {
 
         TimeSinceEnemyHit = 0;
         hitByEnemy = false;
+        region = Assets.instance.gigaGalAssets.gigaGalSprites.get(1);
     }
 
     public void Platform_Initializer(Array<Platform> platform){
@@ -85,7 +87,7 @@ public class GigaGal extends InputAdapter {
 
     public void initail_platform_assigner(Vector2 platform){
         position.x = platform.x;
-        position.y = platform.y + 4;
+        position.y = platform.y + 8;
         //platform.hasLandedOnPlatform = true;
         jumpState = JumpState.FALLING;
         initpos.x = position.x;
@@ -97,17 +99,9 @@ public class GigaGal extends InputAdapter {
     }
 
     public void render(SpriteBatch batch){
-        AllPlatformManager();
-        update(Gdx.graphics.getDeltaTime(), batch);
-        region = spriteSelector();
         if(region == null)
             return;
-       RespondToEnemies();
-        PowerUpd();
-        BulletEnemyCollisionManager(batch);
-        ExplosionCauser(batch);
 
-      //  Gdx.app.log("Dimensions", "Width: " + region.getRegionWidth() + "Height: "+ region.getRegionHeight());
         batch.draw(region.getTexture(),
                     position.x - Constants.LENGTH_CORRECTION,
                     position.y - Constants.HEIGHT_CORRECTION,
@@ -131,13 +125,16 @@ public class GigaGal extends InputAdapter {
     float timesincelastclick;
 
     public void update(float delta, SpriteBatch batch){
+        AllPlatformManager();
+        region = spriteSelector();
+
         if(TimeUtils.nanoTime() / 1e+9 - TimeSinceEnemyHit > Constants.ENEMY_HIT_FREEZE_TIME){
             hitByEnemy = false;
         }
 
         if(jumpState != JumpState.RECOILING) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || OnScreenControls.isRightTouched()) {
                 timesincelastclick = TimeUtils.nanoTime();
                 timesincelastclick /= 1e+9;
 
@@ -147,7 +144,7 @@ public class GigaGal extends InputAdapter {
                     velocity.x += delta * Constants.HORIZONTAL_SPEED_MULTIPLIER;
             }
 
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || OnScreenControls.isLeftTouched()) {
                 if (position.x == 1)
                     return;
 
@@ -159,7 +156,7 @@ public class GigaGal extends InputAdapter {
                     velocity.x -= delta * Constants.HORIZONTAL_SPEED_MULTIPLIER;
             }
 
-            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.UP) || OnScreenControls.isJumpTouched()) {
                 if (jumpState == JumpState.GROUNDED) {
                     has_jumped = true;
                     jumpState = JumpState.JUMPING;
@@ -167,7 +164,7 @@ public class GigaGal extends InputAdapter {
                 }
             }
 
-            if(Gdx.input.isKeyJustPressed(Input.Keys.Z) ){
+            if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || OnScreenControls.isShootTouched()){
                 if(ammo > 0){
                     ammo--;
                     Bullet bullet;
@@ -211,6 +208,12 @@ public class GigaGal extends InputAdapter {
 
         position.x += velocity.x * delta;
         position.y += velocity.y * delta;
+
+        RespondToEnemies();
+        PowerUpd();
+        BulletEnemyCollisionManager(batch);
+        ExplosionCauser(batch);
+
     }
 
     public void InBounds(){
@@ -274,12 +277,15 @@ public class GigaGal extends InputAdapter {
     public void PlatformManager(Platform platform){
         float top = platform.bottom + platform.length;
         float gigaGalwidth = Assets.instance.gigaGalAssets.standingright.getRegionWidth() / 2;
-        float gigaGalHeight = Assets.instance.gigaGalAssets.standingright.getRegionHeight();
+        //float gigaGalHeight = Assets.instance.gigaGalAssets.standingright.getRegionHeight();
 
-        if(withinPlatformWidth(platform, gigaGalwidth) && isfallingOnPlatform(gigaGalHeight, top) && velocity.y < -10){
+        if(withinPlatformWidth(platform, gigaGalwidth) && isfallingOnPlatform(top) && velocity.y < -10){
             velocity.y = 0;
             if(jumpState == JumpState.RECOILING)
                 velocity.x = 0;
+
+            if(position.y > top - 1)
+                position.y = top - 1;
 
             jumpState = JumpState.GROUNDED;
             platform.hasLandedOnPlatform = true;
@@ -289,7 +295,7 @@ public class GigaGal extends InputAdapter {
             jump_start = 0;
         }
 
-        if(jumpState == JumpState.RECOILING && !isfallingOnPlatform(gigaGalHeight,top)) {
+        if(jumpState == JumpState.RECOILING && !isfallingOnPlatform(top)) {
             platform.hasLandedOnPlatform = false;return;
         }
 
@@ -306,8 +312,8 @@ public class GigaGal extends InputAdapter {
         return false;
     }
 
-    public boolean isfallingOnPlatform(float gigaGalHeight, float top){
-        if(position.y + 2 >= top && position.y + 2 < top + 1)
+    public boolean isfallingOnPlatform(float top){
+        if(position.y + 2 >= top && position.y < top)
             return true;
         return false;
     }

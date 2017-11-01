@@ -11,11 +11,32 @@ bullet
   orig: 7, 5
   offset: 0, 0
   index: -1
-button
+button-jump
   rotate: false
-  xy: 2, 62
-  size: 64, 64
-  orig: 64, 64
+  xy: 158, 28
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+button-move-left
+  rotate: false
+  xy: 192, 28
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+button-move-right
+  rotate: false
+  xy: 226, 28
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+button-shoot
+  rotate: false
+  xy: 260, 28
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 enemy
@@ -27,56 +48,56 @@ enemy
   index: -1
 exit-portal-1
   rotate: false
-  xy: 68, 62
+  xy: 2, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-2
   rotate: false
-  xy: 134, 62
+  xy: 68, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-3
   rotate: false
-  xy: 200, 62
+  xy: 134, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-4
   rotate: false
-  xy: 266, 62
+  xy: 200, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-5
   rotate: false
-  xy: 332, 62
+  xy: 266, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 exit-portal-6
   rotate: false
-  xy: 398, 62
+  xy: 332, 62
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 explosion-large
   rotate: false
-  xy: 464, 72
+  xy: 454, 72
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 explosion-medium
   rotate: false
-  xy: 497, 113
+  xy: 495, 94
   size: 13, 13
   orig: 13, 13
   offset: 0, 0
@@ -90,14 +111,14 @@ explosion-small
   index: -1
 jumping-left
   rotate: false
-  xy: 222, 25
+  xy: 294, 25
   size: 29, 35
   orig: 29, 35
   offset: 0, 0
   index: -1
 jumping-right
   rotate: false
-  xy: 126, 25
+  xy: 431, 91
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
@@ -111,56 +132,56 @@ platform
   index: -1
 powerup
   rotate: false
-  xy: 369, 43
+  xy: 495, 109
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 253, 25
+  xy: 325, 25
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
   index: -1
 standing-right
   rotate: false
-  xy: 464, 91
+  xy: 398, 91
   size: 31, 35
   orig: 31, 35
   offset: 0, 0
   index: -1
 walk-1-left
   rotate: false
-  xy: 313, 25
+  xy: 398, 54
   size: 27, 35
   orig: 27, 35
   offset: 0, 0
   index: -1
 walk-1-right
   rotate: false
-  xy: 158, 25
+  xy: 126, 25
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 walk-2-left
   rotate: false
-  xy: 342, 25
+  xy: 427, 54
   size: 25, 35
   orig: 25, 35
   offset: 0, 0
   index: -1
 walk-2-right
   rotate: false
-  xy: 190, 25
+  xy: 463, 91
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 walk-3-left
   rotate: false
-  xy: 283, 25
+  xy: 355, 25
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
