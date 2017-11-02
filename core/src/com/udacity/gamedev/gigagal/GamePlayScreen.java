@@ -1,5 +1,6 @@
 package com.udacity.gamedev.gigagal;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -96,6 +97,10 @@ public class GamePlayScreen extends  ScreenAdapter{
         font.dispose();
     }
 
+    public boolean onMobile(){
+        return Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
+    }
+
     @Override
     public void render(float delta){
 
@@ -115,7 +120,10 @@ public class GamePlayScreen extends  ScreenAdapter{
         if(!End)
         {level.update(Gdx.graphics.getDeltaTime(), batch);}
         level.render(batch);
-        onScreenControls.render(batch);
+
+        if(onMobile())
+            onScreenControls.render(batch);
+
         batch.end();
 
         batch.setProjectionMatrix(HUDviewport.getCamera().combined);

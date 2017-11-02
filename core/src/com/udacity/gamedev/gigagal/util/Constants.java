@@ -57,8 +57,8 @@ public class Constants {
     public static final float RECOIL_VELOCITY = 150f;
     public static final float RECOIL_VERTICAL_VELOCITY = 200f;
     public static final float ENEMY_HIT_FREEZE_TIME = 0.5f;
-    public static final float ENEMY_LENGTH_CORRECTION = 4f;
-    public static final float ENEMY_HEIGHT_CORRECTION = 2f;
+//    public static final float ENEMY_LENGTH_CORRECTION = 4f;
+//    public static final float ENEMY_HEIGHT_CORRECTION = 2f;
 
     public static final String EXPLOSION_SMALL = "explosion-small";
     public static final String EXPLOSION_MEDIUM = "explosion-medium";
@@ -71,7 +71,7 @@ public class Constants {
     public static final float BULLET_VELOCITY = 180f;
     public static final float EXPLOSION_TIME_DURATION = 0.5f;
 
-    public static final String LEVEL_DIR = "levels";
+    public static final String LEVEL_DIR = "Levels";
     public static final String LEVEL_FILE_EXTENSION = "dt";
     public static final String LEVEL_COMPOSITE = "composite";
     public static final String LEVEL_9PATCHES = "sImage9patchs";
@@ -108,7 +108,7 @@ public class Constants {
     public static final String MOVE_RIGHT_BUTTON = "button-move-right";
     public static final String SHOOT_BUTTON = "button-shoot";
 
-    public static final float BUTTON_POSITION1_X = 70;
+    public static final float BUTTON_POSITION1_X = 80;
     public static final float BUTTON_POSITION1_Y = 40;
     public static final float BUTTON_POSITION2_X = 55f;
     public static final float BUTTON_POSITION2_Y = 50f;

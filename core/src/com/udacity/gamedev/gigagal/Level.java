@@ -36,7 +36,7 @@ public class Level {
         int noOfPlatforms = (int)MathUtils.random(10, Constants.MAX_NUMBER_OF_PLATFORM);
         Gdx.app.log("number", " = "+noOfPlatforms);
         score = 0;
-
+        //exitPortal = new ExitPortal(new Vector2(100, 0));
         /*for(int i = 0; i < noOfPlatforms; i++){
             platforms.add(new Platform());
         }*/

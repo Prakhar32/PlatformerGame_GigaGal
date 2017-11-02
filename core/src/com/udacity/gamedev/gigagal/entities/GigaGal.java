@@ -79,6 +79,7 @@ public class GigaGal extends InputAdapter {
         TimeSinceEnemyHit = 0;
         hitByEnemy = false;
         region = Assets.instance.gigaGalAssets.gigaGalSprites.get(1);
+        platforms = new Array<Platform>();
     }
 
     public void Platform_Initializer(Array<Platform> platform){
@@ -87,7 +88,7 @@ public class GigaGal extends InputAdapter {
 
     public void initail_platform_assigner(Vector2 platform){
         position.x = platform.x;
-        position.y = platform.y + 8;
+        position.y = platform.y + 18;
         //platform.hasLandedOnPlatform = true;
         jumpState = JumpState.FALLING;
         initpos.x = position.x;
